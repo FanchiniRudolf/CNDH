@@ -2,10 +2,12 @@ import tkinter as tk, threading            # python 3
 from tkinter import font  as tkfont # python 3
 from PIL import ImageTk, Image
 import imageio
+import time
 #import Tkinter as tk     # python 2
 #import tkFont as tkfont  # python 2
 
 class SampleApp(tk.Tk):
+
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -23,30 +25,66 @@ class SampleApp(tk.Tk):
         # the container is where we'll stack a bunch of frames
         # on top of each other, then the one we want visible
         # will be raised above the others
-        container = tk.Frame(self)
-        container.pack(side="top", fill= "both", expand=False)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
+        self.container = tk.Frame(self)
+        self.container.pack(side="top", fill= "both", expand=False)
+        self.container.grid_rowconfigure(0, weight=1)
+        self.container.grid_columnconfigure(0, weight=1)
 
 
         self.frames = {}
         for F in (StartPage, PageOne, PageTwo, PageThree):
             page_name = F.__name__
-            frame = F(parent=container, controller=self,)
+            frame = F(parent=self.container, controller=self,)
             self.frames[page_name] = frame
 
             # put all of the pages in the same location;
             # the one on the top of the stacking order
             # will be the one that is visible.
-            filler = 50
+            #filler = 50
             frame.grid(row=0, column=0, sticky="S", ipadx= self.winfo_screenheight(), ipady=self.winfo_screenheight(), pady= 3)
 
         self.show_frame("StartPage")
 
+
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
+
+        if page_name == "PageThree":
+            self.frames = {}
+            for F in (StartPage, PageOne, PageTwo, PageThree):
+                page_name = F.__name__
+                frame = F(parent=self.container, controller=self, )
+                self.frames[page_name] = frame
+
+                # put all of the pages in the same location;
+                # the one on the top of the stacking order
+                # will be the one that is visible.
+                #filler = 50
+                frame.grid(row=0, column=0, sticky="S", ipadx=self.winfo_screenheight(),
+                           ipady=self.winfo_screenheight(), pady=3)
+            self.changeFrame("PageThree")
+
+        elif page_name != "StartPage":
+            self.changeFrame(page_name)
+            self.sec = 0
+            self.tick()
+        else:
+            self.changeFrame("StartPage")
+
+
+
+    def changeFrame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()
+
+    def tick(self):
+        self.sec += 1
+        if self.sec >= 10:
+            self.changeFrame("StartPage")
+            return
+        else:
+            self.after(1000, self.tick)
+            return
 
 
 class StartPage(tk.Frame):
@@ -179,12 +217,6 @@ class PageTwo(tk.Frame):
         button.grid(row=4, column=3)
 
 class PageThree(tk.Frame):
-    def stream(label, video):
-
-        for image in video.iter_data():
-            frame_image = ImageTk.PhotoImage(Image.fromarray(image))
-            label.config(image=frame_image)
-            label.image = frame_image
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -208,9 +240,18 @@ class PageThree(tk.Frame):
         self.video = imageio.get_reader(self.video_name)
         self.my_label = tk.Label(self)
         self.my_label.grid(row =3, column = 2)
-        self.thread = threading.Thread(target=PageThree.stream, args=(self.my_label, self.video))
+        self.thread = threading.Thread(target=PageThree.stream, args=(self, self.my_label, self.video, controller))
         self.thread.daemon = 1
         self.thread.start()
+
+    def stream(self, label, video, controller):
+        for image in video.iter_data():
+            frame_image = ImageTk.PhotoImage(Image.fromarray(image))
+            label.config(image=frame_image)
+            label.image = frame_image
+
+        controller.changeFrame("StartPage")
+
 
 
 if __name__ == "__main__":
