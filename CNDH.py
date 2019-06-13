@@ -1,8 +1,8 @@
+import sys
 import tkinter as tk, threading            # python 3
 from tkinter import font  as tkfont # python 3
 from PIL import ImageTk, Image
 import imageio
-import time
 #import Tkinter as tk     # python 2
 #import tkFont as tkfont  # python 2
 
@@ -19,7 +19,7 @@ class SampleApp(tk.Tk):
         # use the next line if you also want to get rid of the titlebar
         self.overrideredirect(1)
         self.geometry("%dx%d+0+0" % (w, h))
-        self.bind("<Escape>", exit)
+        self.bind("<Escape>", sys.exit)
         self.configure(background='#C8C9CC')
 
         # the container is where we'll stack a bunch of frames
