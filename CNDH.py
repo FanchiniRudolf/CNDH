@@ -32,7 +32,7 @@ class SampleApp(tk.Tk):
 
 
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo, PageThree):
+        for F in (StartPage, PageOne, PageTwo, PageThree, Wallpaper):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self,)
             self.frames[page_name] = frame
@@ -51,7 +51,7 @@ class SampleApp(tk.Tk):
 
         if page_name == "PageThree":
             self.frames = {}
-            for F in (StartPage, PageOne, PageTwo, PageThree):
+            for F in (StartPage, PageOne, PageTwo, PageThree, Wallpaper):
                 page_name = F.__name__
                 frame = F(parent=self.container, controller=self, )
                 self.frames[page_name] = frame
@@ -70,12 +70,25 @@ class SampleApp(tk.Tk):
             self.tick()
         else:
             self.changeFrame("StartPage")
+            self.sec = 0
+            self.wallpaper()
 
 
 
     def changeFrame(self, page_name):
+        self.sec = 0
         frame = self.frames[page_name]
         frame.tkraise()
+
+    def wallpaper(self):
+        self.sec += 1
+        if self.sec >= 10:
+            self.changeFrame("Wallpaper")
+            return
+        else:
+            print(self.sec)
+            self.after(1000, self.wallpaper)
+            return
 
     def tick(self):
         self.sec += 1
@@ -251,6 +264,35 @@ class PageThree(tk.Frame):
             label.image = frame_image
 
         controller.changeFrame("StartPage")
+
+class Wallpaper(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        self.grid_columnconfigure(0, weight=0)
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(2, weight=2)
+        self.grid_columnconfigure(3, weight=1)
+        self.grid_columnconfigure(4, weight=0)
+        self.grid_rowconfigure(0, weight=0)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=2)
+        self.grid_rowconfigure(3, weight=3)
+        self.grid_rowconfigure(4, weight=2)
+        self.grid_rowconfigure(5, weight=1)
+        self.grid_rowconfigure(0, weight=6)
+
+        self.configure(background="black")
+        self.controller.bind("<Button-1>", self.goback)
+
+        self.logo = ImageTk.PhotoImage(Image.open("assetsCNDH/Logo.PNG"))
+        logoIm = tk.Label(self, image=self.logo, bg="white")
+        logoIm.grid(row=1, column=1, columnspan=1)
+
+    def goback(self, event):
+        self.controller.show_frame("StartPage")
+
 
 
 
