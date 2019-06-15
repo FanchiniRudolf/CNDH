@@ -49,8 +49,6 @@ class SampleApp(tk.Tk):
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
-        print("show")
-        print(page_name)
 
         if page_name == "PageThree":
             self.frames = {}
@@ -80,25 +78,29 @@ class SampleApp(tk.Tk):
 
     def changeFrame(self, page_name):
         self.sec = 0
+        self.secWall = 0
         self.visible_frame = page_name
         frame = self.frames[page_name]
         frame.tkraise()
 
     def wallpaper(self):
-        self.sec += 1
-        if self.sec >= 3:
-            self.changeFrame("Wallpaper")
-            return
+        if self.visible_frame == "StartPage":
+            self.secWall += 1
+            if self.secWall >= 10 and self.secWall<200:
+
+                self.changeFrame("Wallpaper")
+                return
+            else:
+                self.after(1000, self.wallpaper)
+                return
         else:
-            self.after(1000, self.wallpaper)
+            self.secWall=300
             return
 
     def tick(self):
-        print("wut")
         self.sec += 1
         if self.sec >= 10:
-            print("yu")
-            self.changeFrame("StartPage")
+            self.show_frame("StartPage")
             return
         else:
             self.after(1000, self.tick)
