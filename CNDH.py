@@ -3,6 +3,7 @@ import tkinter as tk, threading            # python 3
 from tkinter import font  as tkfont # python 3
 from PIL import ImageTk, Image
 import imageio
+import random
 #import Tkinter as tk     # python 2
 #import tkFont as tkfont  # python 2
 
@@ -43,11 +44,13 @@ class SampleApp(tk.Tk):
             #filler = 50
             frame.grid(row=0, column=0, sticky="S", ipadx= self.winfo_screenheight(), ipady=self.winfo_screenheight(), pady= 3)
 
-        self.show_frame("StartPage")
 
+        self.show_frame("StartPage")
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
+        print("show")
+        print(page_name)
 
         if page_name == "PageThree":
             self.frames = {}
@@ -77,22 +80,24 @@ class SampleApp(tk.Tk):
 
     def changeFrame(self, page_name):
         self.sec = 0
+        self.visible_frame = page_name
         frame = self.frames[page_name]
         frame.tkraise()
 
     def wallpaper(self):
         self.sec += 1
-        if self.sec >= 10:
+        if self.sec >= 3:
             self.changeFrame("Wallpaper")
             return
         else:
-            print(self.sec)
             self.after(1000, self.wallpaper)
             return
 
     def tick(self):
+        print("wut")
         self.sec += 1
         if self.sec >= 10:
+            print("yu")
             self.changeFrame("StartPage")
             return
         else:
@@ -161,7 +166,7 @@ class PageOne(tk.Frame):
         self.grid_rowconfigure(3, weight=3)
         self.grid_rowconfigure(4, weight=2)
         self.grid_rowconfigure(5, weight=1)
-        self.grid_rowconfigure(0, weight=6)
+        self.grid_rowconfigure(6, weight=6)
 
         self.configure(background="white")
 
@@ -200,7 +205,7 @@ class PageTwo(tk.Frame):
         self.grid_rowconfigure(3, weight=3)
         self.grid_rowconfigure(4, weight=2)
         self.grid_rowconfigure(5, weight=1)
-        self.grid_rowconfigure(0, weight=6)
+        self.grid_rowconfigure(6, weight=6)
 
         self.configure(background="white")
 
@@ -245,7 +250,7 @@ class PageThree(tk.Frame):
         self.grid_rowconfigure(3, weight=3)
         self.grid_rowconfigure(4, weight=2)
         self.grid_rowconfigure(5, weight=1)
-        self.grid_rowconfigure(0, weight=6)
+        self.grid_rowconfigure(6, weight=6)
 
         self.configure(background="white")
 
@@ -262,8 +267,8 @@ class PageThree(tk.Frame):
             frame_image = ImageTk.PhotoImage(Image.fromarray(image))
             label.config(image=frame_image)
             label.image = frame_image
-
-        controller.changeFrame("StartPage")
+        if controller.visible_frame == "PageThree":
+            controller.changeFrame("StartPage")
 
 class Wallpaper(tk.Frame):
 
@@ -281,17 +286,25 @@ class Wallpaper(tk.Frame):
         self.grid_rowconfigure(3, weight=3)
         self.grid_rowconfigure(4, weight=2)
         self.grid_rowconfigure(5, weight=1)
-        self.grid_rowconfigure(0, weight=6)
+        self.grid_rowconfigure(6, weight=6)
 
         self.configure(background="black")
         self.controller.bind("<Button-1>", self.goback)
 
         self.logo = ImageTk.PhotoImage(Image.open("assetsCNDH/Logo.PNG"))
-        logoIm = tk.Label(self, image=self.logo, bg="white")
-        logoIm.grid(row=1, column=1, columnspan=1)
+        self.logoIm = tk.Label(self, image=self.logo, bg="black")
+        self.logoIm.grid(row=1, column=1, columnspan=1)
+        self.after(1000, self.anim)
 
     def goback(self, event):
         self.controller.show_frame("StartPage")
+
+    def anim(self):
+        rowpos = random.randint(0, 6)
+        columnpos = random.randint(0,4)
+        self.logoIm.grid(row=rowpos, column=columnpos, columnspan=1)
+        self.after(1000, self.anim)
+        return
 
 
 
