@@ -4,7 +4,8 @@ from tkinter import font  as tkfont # python 3
 from PIL import ImageTk, Image
 import imageio
 import random
-#import Tkinter as tk     # python 2
+#import Tkinter as tk
+# python 2
 #import tkFont as tkfont  # python 2
 
 class SampleApp(tk.Tk):
@@ -33,7 +34,7 @@ class SampleApp(tk.Tk):
 
 
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo, PageThree, Wallpaper):
+        for F in (StartPage, PageOne, PageTwo, PageThree, PageFour, Wallpaper):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self,)
             self.frames[page_name] = frame
@@ -52,7 +53,7 @@ class SampleApp(tk.Tk):
 
         if page_name == "PageThree":
             self.frames = {}
-            for F in (StartPage, PageOne, PageTwo, PageThree, Wallpaper):
+            for F in (StartPage, PageOne, PageTwo, PageThree, PageFour, Wallpaper):
                 page_name = F.__name__
                 frame = F(parent=self.container, controller=self, )
                 self.frames[page_name] = frame
@@ -123,31 +124,47 @@ class StartPage(tk.Frame):
         self.grid_rowconfigure(1, weight=1)
         self.grid_rowconfigure(2, weight=2)
         self.grid_rowconfigure(3, weight=3)
-        self.grid_rowconfigure(4, weight=2)
-        self.grid_rowconfigure(5, weight=1)
-        self.grid_rowconfigure(6, weight=0)
+        self.grid_rowconfigure(4, weight=4)
+        self.grid_rowconfigure(5, weight=3)
+        self.grid_rowconfigure(6, weight=2)
+        self.grid_rowconfigure(7, weight=1)
+        self.grid_rowconfigure(8, weight=0)
 
-        self.logo = ImageTk.PhotoImage(Image.open("assetsCNDH/Logo.PNG"))
-        logoIm = tk.Label(self, image=self.logo, bg="white")
-        logoIm.grid(row=2, column =2, columnspan = 1)
+        ima= Image.open("assetsCNDH/home.png")
+        ima = ima.resize((controller.winfo_screenwidth(),controller.winfo_screenheight()))
+        self.bg = ImageTk.PhotoImage(ima)
+        background = tk.Label(self, image=self.bg, bg="black")
+        background.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.ubi = ImageTk.PhotoImage(Image.open("assetsCNDH/Ubicacion.PNG"))
-        label = tk.Label(self, image=self.ubi, font=controller.title_font, bg= "white")
-        label.grid(column =2, row =3)
-
-        self.imgbt1= ImageTk.PhotoImage(Image.open("assetsCNDH/BotonComputo.PNG"))
+        btn1 = Image.open("assetsCNDH/BotonComputo.png")
+        btn1 = btn1.resize((controller.winfo_screenwidth()//5, controller.winfo_screenheight()//7))
+        self.imgbt1= ImageTk.PhotoImage(btn1)
         buttonComputo = tk.Button(self, image = self.imgbt1,
-                            command=lambda: controller.show_frame("PageOne"), border=0)
-        self.imgbt2 = ImageTk.PhotoImage(Image.open("assetsCNDH/BotonEdificio.PNG"))
-        buttonEdificio = tk.Button(self, image = self.imgbt2,
-                            command=lambda: controller.show_frame("PageTwo"),border=-1)
+                            command=lambda: controller.show_frame("PageOne"), border=0, background="#012BEF")
 
-        self.imgbt3 = ImageTk.PhotoImage(Image.open("assetsCNDH/botonVideo.png"))
-        buttonVideo = tk.Button(self, image=self.imgbt3,
-                                   command=lambda: controller.show_frame("PageThree"), border=-1)
-        buttonComputo.grid(column =1, row = 4, sticky= "E")
-        buttonEdificio.grid(column =3, row =4, sticky= "W")
-        buttonVideo.grid(column=2, row=4, sticky="W")
+        btn2 = Image.open("assetsCNDH/BotonEdificio.PNG")
+        btn2 = btn2.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt2 = ImageTk.PhotoImage(btn2)
+        buttonEdificio = tk.Button(self, image = self.imgbt2,
+                            command=lambda: controller.show_frame("PageTwo"),border=-1, background="#012BEF")
+
+        btn3 = Image.open("assetsCNDH/BotonEdificio2.PNG")
+        btn3 = btn3.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt3 = ImageTk.PhotoImage(btn3)
+        buttonEdificio2 = tk.Button(self, image=self.imgbt3,
+                                   command=lambda: controller.show_frame("PageFour"), border=-1, background="#012BEF")
+
+        btn4 = Image.open("assetsCNDH/botonVideo.png")
+        btn4 = btn4.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt4 = ImageTk.PhotoImage(btn4)
+        buttonVideo = tk.Button(self, image=self.imgbt4,
+                                   command=lambda: controller.show_frame("PageThree"), border=-1, background="#012BEF")
+
+
+        buttonComputo.grid(column =5, row = 1)
+        buttonEdificio.grid(column =5, row =3)
+        buttonEdificio2.grid(column=5, row=5)
+        buttonVideo.grid(column=5, row=7)
 
 
 
@@ -172,24 +189,18 @@ class PageOne(tk.Frame):
 
         self.configure(background="white")
 
-        self.logo = ImageTk.PhotoImage(Image.open("assetsCNDH/Logo.PNG"))
-        logoIm = tk.Label(self, image=self.logo, bg="white")
-        logoIm.grid(row=1, column=1, columnspan=1)
+        ima = Image.open("assetsCNDH/centroComputo.png")
+        ima = ima.resize((controller.winfo_screenwidth(), controller.winfo_screenheight()))
+        self.bg = ImageTk.PhotoImage(ima)
+        background = tk.Label(self, image=self.bg, bg="white")
+        background.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.ubi = ImageTk.PhotoImage(Image.open("assetsCNDH/seccionesComputo.PNG"))
-        label = tk.Label(self, text="SÓTANO\n\nSubdirección de Servicios Generales\n\nPLANTA BAJA\n\nSubdirección de Desarrollo Informático\n\nSubdirección de Desarrollo Tecnológico y Comunicaciones\nSubdirección de Administración de Proyectos\n\nPISO 1\n\nSubdirección de Desarrollo Informático\n\nSubdirección de Desarrollo Tecnológico y Comunicaciones\nSubdirección de Administración de Proyectos\nDirección General de Quejas, Orientación y Transparencia",
-                         font=controller.title_font, bg="white", justify = "left")
-        label.grid(row = 2, column = 1)
-
-        self.namePlace = ImageTk.PhotoImage(Image.open("assetsCNDH/nombreComputo.PNG"))
-        label2 = tk.Label(self, image=self.namePlace, font=controller.title_font)
-        label2.grid(row = 1, column = 3)
-
-
-        self.imgbt1 = ImageTk.PhotoImage(Image.open("assetsCNDH/botonBack.PNG"))
+        btn = Image.open("assetsCNDH/botonBack.PNG")
+        btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt1 = ImageTk.PhotoImage(btn)
         button = tk.Button(self, image= self.imgbt1,
                            command=lambda: controller.show_frame("StartPage"), border=0)
-        button.grid(row = 4, column = 3)
+        button.grid(row = 6, column = 3)
 
 class PageTwo(tk.Frame):
 
@@ -211,30 +222,51 @@ class PageTwo(tk.Frame):
 
         self.configure(background="white")
 
-        self.logo = ImageTk.PhotoImage(Image.open("assetsCNDH/Logo.PNG"))
-        logoIm = tk.Label(self, image=self.logo, bg="white")
-        logoIm.grid(row=1, column=1, columnspan=1)
+        ima = Image.open("assetsCNDH/sotanoNones.png")
+        ima = ima.resize((controller.winfo_screenwidth(), controller.winfo_screenheight()))
+        self.bg = ImageTk.PhotoImage(ima)
+        background = tk.Label(self, image=self.bg, bg="white")
+        background.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.ubi = ImageTk.PhotoImage(Image.open("assetsCNDH/seccionesComputo.PNG"))
-        label = tk.Label(self,
-                         text="SOTANO 2 PERIFÉRICO\nDirección General de Quejas, Orientación y\nTransparencia\n\nSOTANO 1 CONTRERAS\nSubdirección de Servicios Generales\n\nPLANTA BAJA PERIFÉRICO\nDirección General de Quejas, Orientación y\nTransparencia\nUnidad de Transparencia",
-                         font=controller.title_font, bg="white", justify="left")
-        label.grid(row=2, column=1)
-
-        label = tk.Label(self,
-                         text="\nOficialía de Partes\nPLANTA BAJA CONTRERAS\nDirección General de Quejas, Orientación y\nTransparencia\nDirección de Atención al Público\nLudoteca\nSala de Lactancia\nCentro de Atención Telefónica\n\nMEZANINE PERIFÉRICO\nAuditorio\nCuarta Visitaduría:\nDirección de Asuntos de Seguridad Social en\nmateria de Vivienda\nDirección de Asuntos de Indígenas en Reclusión"
-                         ,font=controller.title_font, bg="white", justify="left")
-        label.grid(row=2, column=3)
-
-
-        self.namePlace = ImageTk.PhotoImage(Image.open("assetsCNDH/nombreComputo.PNG"))
-        label2 = tk.Label(self, image=self.namePlace, font=controller.title_font)
-        label2.grid(row=1, column=3)
-
-        self.imgbt1 = ImageTk.PhotoImage(Image.open("assetsCNDH/botonBack.PNG"))
+        btn = Image.open("assetsCNDH/botonBack.PNG")
+        btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt1 = ImageTk.PhotoImage(btn)
         button = tk.Button(self, image=self.imgbt1,
                            command=lambda: controller.show_frame("StartPage"), border=0)
-        button.grid(row=4, column=3)
+        button.grid(row=6, column=2)
+
+class PageFour(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        self.grid_columnconfigure(0, weight=0)
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(2, weight=2)
+        self.grid_columnconfigure(3, weight=1)
+        self.grid_columnconfigure(4, weight=0)
+        self.grid_rowconfigure(0, weight=0)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=2)
+        self.grid_rowconfigure(3, weight=3)
+        self.grid_rowconfigure(4, weight=2)
+        self.grid_rowconfigure(5, weight=1)
+        self.grid_rowconfigure(6, weight=6)
+
+        self.configure(background="white")
+
+        ima = Image.open("assetsCNDH/sotanoPares.png")
+        ima = ima.resize((controller.winfo_screenwidth(), controller.winfo_screenheight()))
+        self.bg = ImageTk.PhotoImage(ima)
+        background = tk.Label(self, image=self.bg, bg="white")
+        background.place(x=0, y=0, relwidth=1, relheight=1)
+
+        btn = Image.open("assetsCNDH/botonBack.PNG")
+        btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt1 = ImageTk.PhotoImage(btn)
+        button = tk.Button(self, image=self.imgbt1,
+                           command=lambda: controller.show_frame("StartPage"), border=0)
+        button.grid(row=6, column=2)
 
 class PageThree(tk.Frame):
 
