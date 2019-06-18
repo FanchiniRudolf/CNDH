@@ -199,8 +199,8 @@ class PageOne(tk.Frame):
         btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
         self.imgbt1 = ImageTk.PhotoImage(btn)
         button = tk.Button(self, image= self.imgbt1,
-                           command=lambda: controller.show_frame("StartPage"), border=0)
-        button.grid(row = 6, column = 3)
+                           command=lambda: controller.show_frame("StartPage"), border=0, background="#012BEF")
+        button.grid(row = 7, column = 3)
 
 class PageTwo(tk.Frame):
 
@@ -233,7 +233,7 @@ class PageTwo(tk.Frame):
         self.imgbt1 = ImageTk.PhotoImage(btn)
         button = tk.Button(self, image=self.imgbt1,
                            command=lambda: controller.show_frame("StartPage"), border=0)
-        button.grid(row=6, column=2)
+        button.grid(row=8, column=2)
 
 class PageFour(tk.Frame):
 
@@ -266,7 +266,7 @@ class PageFour(tk.Frame):
         self.imgbt1 = ImageTk.PhotoImage(btn)
         button = tk.Button(self, image=self.imgbt1,
                            command=lambda: controller.show_frame("StartPage"), border=0)
-        button.grid(row=6, column=2)
+        button.grid(row=8, column=2)
 
 class PageThree(tk.Frame):
 

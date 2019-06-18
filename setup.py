@@ -11,6 +11,7 @@
 # If everything works well you should find a subdirectory in the build
 # subdirectory that contains the files needed to run the application
 
+#builder in cmd
 #python setup.py build
 
 import sys, os
