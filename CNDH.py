@@ -117,7 +117,7 @@ class StartPage(tk.Frame):
         self.configure(background= "white")
         self.grid_columnconfigure(0, weight=0)
         self.grid_columnconfigure(1, weight=1)
-        self.grid_columnconfigure(2, weight=2)
+        self.grid_columnconfigure(2, weight=2, minsize=500)
         self.grid_columnconfigure(3, weight=1)
         self.grid_columnconfigure(4, weight=0)
         self.grid_rowconfigure(0, weight=0)
