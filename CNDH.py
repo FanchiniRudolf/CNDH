@@ -161,10 +161,10 @@ class StartPage(tk.Frame):
                                    command=lambda: controller.show_frame("PageThree"), border=-1, background="#012BEF")
 
 
-        buttonComputo.grid(column =5, row = 1)
-        buttonEdificio.grid(column =5, row =3)
-        buttonEdificio2.grid(column=5, row=5)
-        buttonVideo.grid(column=5, row=7)
+        buttonComputo.grid(column =3, row = 1)
+        buttonEdificio.grid(column =3, row =3)
+        buttonEdificio2.grid(column=3, row=5)
+        buttonVideo.grid(column=3, row=7)
 
 
 
