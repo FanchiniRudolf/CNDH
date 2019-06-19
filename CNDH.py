@@ -14,7 +14,7 @@ class SampleApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic" )
 
 
         w, h = self.winfo_screenwidth(), self.winfo_screenheight()
@@ -100,7 +100,7 @@ class SampleApp(tk.Tk):
 
     def tick(self):
         self.sec += 1
-        if self.sec >= 10:
+        if self.sec >= 120:
             self.show_frame("StartPage")
             return
         else:
@@ -328,7 +328,10 @@ class Wallpaper(tk.Frame):
         self.logo = ImageTk.PhotoImage(Image.open("assetsCNDH/Logo.PNG"))
         self.logoIm = tk.Label(self, image=self.logo, bg="black")
         self.logoIm.grid(row=1, column=1, columnspan=1)
-        self.after(1000, self.anim)
+
+        self.label = tk.Label(self,  text = "Para ver Directorio\n Toque la pantalla", foreground = "#C8C9CC", bg="black", font = controller.title_font)
+
+        self.after(2000, self.anim)
 
     def goback(self, event):
         self.controller.show_frame("StartPage")
@@ -337,7 +340,10 @@ class Wallpaper(tk.Frame):
         rowpos = random.randint(0, 6)
         columnpos = random.randint(0,4)
         self.logoIm.grid(row=rowpos, column=columnpos, columnspan=1)
-        self.after(1000, self.anim)
+        rowpos = random.randint(0, 6)
+        columnpos = random.randint(0, 4)
+        self.label.grid(row=rowpos, column=columnpos, columnspan=1)
+        self.after(2000, self.anim)
         return
 
 
