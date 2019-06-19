@@ -87,7 +87,7 @@ class SampleApp(tk.Tk):
     def wallpaper(self):
         if self.visible_frame == "StartPage":
             self.secWall += 1
-            if self.secWall >= 10 and self.secWall<200:
+            if self.secWall >= 120 and self.secWall<200:
 
                 self.changeFrame("Wallpaper")
                 return
@@ -100,7 +100,7 @@ class SampleApp(tk.Tk):
 
     def tick(self):
         self.sec += 1
-        if self.sec >= 120:
+        if self.sec >= 180:
             self.show_frame("StartPage")
             return
         else:
