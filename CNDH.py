@@ -109,6 +109,7 @@ class SampleApp(tk.Tk):
     def videoplay(self):
         comando = 'vlc --play-and-exit --no-video-deco -f C:\\Users\\momoh\\Documents\\GitHub\\CNDH\\assetsCNDH\\prueba.mp4'
         subprocess.run("python videoCMD.py", shell=True)
+        exit()
         #subprocess.run("python CNDH.py", shell=True)
 
 
