@@ -149,13 +149,13 @@ class StartPage(tk.Frame):
         btn2 = btn2.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
         self.imgbt2 = ImageTk.PhotoImage(btn2)
         buttonEdificio = tk.Button(self, image=self.imgbt2,
-                                   command=lambda: controller.show_frame("PageTwo"), border=-1, background="#012BEF")
+                                   command=lambda: controller.show_frame("PageFour"), border=-1, background="#012BEF")
 
         btn3 = Image.open("assetsCNDH/BotonEdificio2.PNG")
         btn3 = btn3.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
         self.imgbt3 = ImageTk.PhotoImage(btn3)
         buttonEdificio2 = tk.Button(self, image=self.imgbt3,
-                                    command=lambda: controller.show_frame("PageFour"), border=-1, background="#012BEF")
+                                    command=lambda: controller.show_frame("PageTwo"), border=-1, background="#012BEF")
 
         btn4 = Image.open("assetsCNDH/botonVideo.png")
         btn4 = btn4.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
@@ -292,7 +292,7 @@ class PageThree(tk.Frame):
         self.configure(background="white")
 
         # Open the video source |temporary
-        self.video_source = "assetsCNDH/prueba.mp4"
+        self.video_source = "assetsCNDH/directorio.mp4"
 
         btn = Image.open("assetsCNDH/botonBack.PNG")
         btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
