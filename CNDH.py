@@ -3,6 +3,7 @@ import os
 import tkinter as tk  # python 3
 from tkinter import font  as tkfont  # python 3
 from PIL import ImageTk, Image
+import subprocess
 import random
 
 
@@ -19,7 +20,7 @@ class SampleApp(tk.Tk):
 
         w, h = self.winfo_screenwidth(), self.winfo_screenheight()
         # use the next line if you also want to get rid of the titlebar
-        #self.overrideredirect(1)
+        self.overrideredirect(1)
         self.geometry("%dx%d+0+0" % (w, h))
         self.bind("<Escape>", sys.exit)
         self.configure(background='#C8C9CC')
@@ -106,7 +107,9 @@ class SampleApp(tk.Tk):
             return
 
     def videoplay(self):
-        os.system(r"vlc --play-and-exit C:\Users\momoh\Documents\GitHub\CNDH\assetsCNDH\prueba.mp4")
+        comando = 'vlc --play-and-exit --no-video-deco -f C:\\Users\\momoh\\Documents\\GitHub\\CNDH\\assetsCNDH\\prueba.mp4'
+        subprocess.run("python temp.py", shell=True)
+        #subprocess.run("python CNDH.py", shell=True)
 
 
 class StartPage(tk.Frame):
@@ -158,7 +161,7 @@ class StartPage(tk.Frame):
         btn4 = btn4.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
         self.imgbt4 = ImageTk.PhotoImage(btn4)
         buttonVideo = tk.Button(self, image=self.imgbt4,
-                                command=lambda: controller.show_frame("PageThree"), border=-1, background="#012BEF")
+                                command=lambda: controller.videoplay(), border=-1, background="#012BEF")
 
         buttonComputo.grid(column=3, row=1)
         buttonEdificio.grid(column=3, row=3)
