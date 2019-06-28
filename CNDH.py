@@ -1,5 +1,5 @@
 import sys
-import os
+import threading
 import tkinter as tk  # python 3
 from tkinter import font  as tkfont  # python 3
 from PIL import ImageTk, Image
@@ -106,11 +106,7 @@ class SampleApp(tk.Tk):
             self.after(1000, self.tick)
             return
 
-    def videoplay(self):
-        comando = 'vlc --play-and-exit --no-video-deco -f C:\\Users\\momoh\\Documents\\GitHub\\CNDH\\assetsCNDH\\prueba.mp4'
-        subprocess.run("python videoCMD.py", shell=True)
-        exit()
-        #subprocess.run("python CNDH.py", shell=True)
+
 
 
 class StartPage(tk.Frame):
@@ -162,7 +158,7 @@ class StartPage(tk.Frame):
         btn4 = btn4.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
         self.imgbt4 = ImageTk.PhotoImage(btn4)
         buttonVideo = tk.Button(self, image=self.imgbt4,
-                                command=lambda: controller.videoplay(), border=-1, background="#012BEF")
+                                command=lambda: controller.show_frame("PageThree"), border=-1, background="#012BEF")
 
         buttonComputo.grid(column=3, row=1)
         buttonEdificio.grid(column=3, row=3)
@@ -274,7 +270,27 @@ class PageFour(tk.Frame):
 
 class PageThree(tk.Frame):
 
+    def threader(self):
+        print("NOOOO")
+        self.thread.start()
+
+    def videoplay(self):
+        print("WUUUUT")
+        if self.videoState == 0:
+            self.videoState = 1
+            subprocess.run("python videoCMD.py", shell=True)
+            #exit()
+            #subprocess.run("python CNDH.py", shell=True)
+
+    def retunStart(self):
+        if self.videoState == 1:
+            subprocess.run("python videoExit.py", shell=True)
+            self.videoState=0
+        self.controller.show_frame("StartPage")
+
     def __init__(self, parent, controller):
+        self.videoState = 0
+        self.thread = threading.Thread(target=self.videoplay, name="Thread")
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.grid_columnconfigure(0, weight=0)
@@ -292,15 +308,21 @@ class PageThree(tk.Frame):
 
         self.configure(background="white")
 
-        # Open the video source |temporary
-        self.video_source = "assetsCNDH/directorio.mp4"
+        btn = Image.open("assetsCNDH/botonVideo.png")
+        btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
+        self.imgbt0 = ImageTk.PhotoImage(btn)
+        buttonPlayVideo = tk.Button(self, image=self.imgbt0,
+                                    command= self.threader, border=-1, background="#012BEF")
+        buttonPlayVideo.grid(row=3, column=2)
 
         btn = Image.open("assetsCNDH/botonBack.PNG")
         btn = btn.resize((controller.winfo_screenwidth() // 5, controller.winfo_screenheight() // 7))
         self.imgbt1 = ImageTk.PhotoImage(btn)
-        buttonPlayVideo = tk.Button(self, image=self.imgbt1,
-                                    command=lambda: controller.videoplay(), border=-1, background="#012BEF")
-        buttonPlayVideo.grid(row=4, column=2)
+        buttonBack = tk.Button(self, image=self.imgbt1,
+                                    command=lambda: self.retunStart(), border=-1, background="#012BEF")
+        buttonBack.grid(row=6, column=2)
+
+
 
 
 class Wallpaper(tk.Frame):
