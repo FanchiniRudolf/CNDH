@@ -1,0 +1,32 @@
+body{
+    background-color: #1B2FEA;
+    overflow: hidden;
+}
+
+video{
+    height: 25%;
+    width: 50%;
+}
+
+.regresar{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+button{
+    display: block;
+    padding: 20px;
+}
+
+.botones{
+    position: absolute;
+    right: 40%;
+    bottom: -10px;
+}
+
+.btnimage{
+    width: 200px;
+    height: auto;
+    border: none;
+}
