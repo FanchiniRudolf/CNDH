@@ -1,30 +1,12 @@
 
 html{
-    background-image: url(./assetsCNDH/home.png);
+    background-image: url(./assetsCNDH/centroComputo.png);
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-.computo{
-    background: transparent;
-    cursor:pointer;
-    border:none;
-}
-
-.nones{
-    background: transparent;
-    cursor:pointer;
-    border:none;
-}
-
-.pares{
-    background: transparent;
-    cursor:pointer;
-    border:none;
-}
-
-.video{
+.regresar{
     background: transparent;
     cursor:pointer;
     border:none;
