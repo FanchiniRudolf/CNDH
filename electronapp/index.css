@@ -1,0 +1,12 @@
+.computo{
+    background:url(./assetsCNDH/BotonComputo.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:100px;
+    height:auto;
+}
+
+.computo:active
+{   
+    background:url(./assetsCNDH/BotonComputo.png) no-repeat;
+}
