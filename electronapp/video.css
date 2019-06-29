@@ -4,10 +4,8 @@ body{
 }
 
 video{
-    height: 35%;
-    width: 70%;
-    margin-left: 200px;
-    margin-top:  50px;
+    height: 100%;
+    width: 100%;
 }
 
 .regresar{
