@@ -7,3 +7,15 @@ body{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif
 }
+
+.texto{
+    position: absolute;
+    right: 50%;
+    top: 50%;
+}
+
+.logo{
+    position: absolute;
+    right: 70%;
+    top: 70%;
+}

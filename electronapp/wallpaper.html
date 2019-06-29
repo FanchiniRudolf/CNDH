@@ -19,6 +19,25 @@
         require("./renderer.js")
 </script>
 <script>
-    setInterval(wallAnim, 3000);
+    setInterval(wallAnim, 1500);
+
+    document.addEventListener('click', goHome, true); 
+
+    function goHome(){
+        document.location.href = "index.html";
+    }
+
+    function wallAnim(){
+        let x = Math.floor((Math.random() * 100) + 1)+"%";
+        let y = Math.floor((Math.random() * 100) + 1)+"%";
+        document.getElementById("logo").style.right=x;
+        document.getElementById("logo").style.top=y;
+
+        x = Math.floor((Math.random() * 100) + 1)+"%";
+        y = Math.floor((Math.random() * 100) + 1)+"%";
+        document.getElementById("texto").style.right=x;
+        document.getElementById("texto").style.top=y;
+
+    }
 </script>
 </html>
