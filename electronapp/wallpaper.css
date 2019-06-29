@@ -1,0 +1,9 @@
+body{
+    background-color: black
+}
+
+.mensaje{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif
+}
