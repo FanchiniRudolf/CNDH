@@ -4,8 +4,10 @@ body{
 }
 
 video{
-    height: 25%;
-    width: 50%;
+    height: 35%;
+    width: 70%;
+    margin-left: 200px;
+    margin-top:  50px;
 }
 
 .regresar{
@@ -22,7 +24,7 @@ button{
 .botones{
     position: absolute;
     right: 40%;
-    bottom: -10px;
+    bottom: 10px;
 }
 
 .btnimage{
