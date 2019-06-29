@@ -12,6 +12,7 @@ body{
     position: absolute;
     right: 50%;
     top: 50%;
+    font-size: 25px;
 }
 
 .logo{
