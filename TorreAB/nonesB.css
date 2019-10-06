@@ -1,0 +1,44 @@
+
+/*html{
+    background-image: url(./assetsCNDH/sotanoNones.png);
+    -webkit-background-size: auto 100%;
+  -moz-background-size: auto 100%;
+  -o-background-size: auto 100%;
+  background-size: auto 100%;
+  height: 100vw;
+}*/
+
+.wallpaper{
+    width: 100%;
+    height: 105%;
+    position: absolute;
+left: 0;
+top: 0;
+}
+
+body{
+    overflow: hidden;
+}
+
+.regresar{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+button{
+    display: block;
+    padding: 20px;
+}
+
+.botones{
+    position: absolute;
+    right: 40%;
+    bottom: -15px;
+}
+
+.btnimage{
+    width: 200px;
+    height: auto;
+    border: none;
+}
