@@ -1,0 +1,47 @@
+
+html{
+    background-image: url(./assetsCNDH/HometorresAyB/homeTORREAYB.png);
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.computo{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+.nones{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+.pares{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+.video{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+button{
+    display: block;
+    padding: 20px;
+}
+
+.botones{
+    position: absolute;
+    right: 50px;
+}
+
+.btnimage{
+    width: 200px;
+    height: auto;
+    border: none;
+}

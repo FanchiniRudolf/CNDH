@@ -1,0 +1,15 @@
+{
+  "name": "torreab",
+  "version": "1.0.0",
+  "description": "second building for cndg",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Rudolf Fanchini",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^5.0.11"
+  }
+}
