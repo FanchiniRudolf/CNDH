@@ -30,3 +30,6 @@ app.on("ready", createWindow);
 
 //close when all windows are close
 app.on("window-all-closed", app.quit);
+
+//npm start to run locally
+//electron-forge make to make exe
