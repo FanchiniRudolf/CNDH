@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="wallpaper.css">
+
+</head>
+<body>
+    <div class="logo" id="logo"><img src="./assetsCNDH/logo.png" alt="logo CNDH"></div>
+    <div class="texto" id="texto"><p class="mensaje">Para ver Directorio <br> Toque Pantalla</p></div>
+</body>
+
+<script>
+</script>
+<script>
+        require("./renderer.js")
+</script>
+<script>
+    setInterval(wallAnim, 1500);
+
+    document.addEventListener('click', goHome, true); 
+
+    function goHome(){
+        document.location.href = "index.html";
+    }
+
+    function wallAnim(){
+        let x = Math.floor((Math.random() * 100) + 1)+"%";
+        let y = Math.floor((Math.random() * 100) + 1)+"%";
+        document.getElementById("logo").style.right=x;
+        document.getElementById("logo").style.top=y;
+
+        x = Math.floor((Math.random() * 100) + 1)+"%";
+        y = Math.floor((Math.random() * 100) + 1)+"%";
+        document.getElementById("texto").style.right=x;
+        document.getElementById("texto").style.top=y;
+
+    }
+</script>
+</html>
