@@ -1,0 +1,51 @@
+body{
+    background-color: #1B2FEA;
+    overflow: hidden;
+    font-size: 250%;
+    color: white;
+}
+
+.mensaje{
+    position: absolute;
+    left:31.5%;
+    bottom: 20%;
+}
+
+.text{
+    text-align: center;
+}
+
+.logo{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+video{
+    height: 100%;
+    width: 100%;
+}
+
+.regresar{
+    background: transparent;
+    cursor:pointer;
+    border:none;
+}
+
+button{
+    display: block;
+    padding: 20px;
+}
+
+.botones{
+    position: absolute;
+    right: 40%;
+    bottom: 10px;
+}
+
+.btnimage{
+    width: 200px;
+    height: auto;
+    border: none;
+}
