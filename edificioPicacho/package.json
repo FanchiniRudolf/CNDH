@@ -1,7 +1,7 @@
 {
-  "name": "fix",
+  "name": "picacho",
   "version": "1.0.0",
-  "description": "third building for cndh",
+  "description": "fourth building for cndh",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
